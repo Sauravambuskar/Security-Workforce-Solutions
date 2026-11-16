@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "AIIF — Security & Manpower"
+description = "A polished five-page client demo for Alliance International Integrated Force Pvt Ltd, presenting security, surveillance, investigation, staffing, payroll and training services using its existing brand and supplied website reference."
+version = "1.0.0"
+id = "artifacts/aiif-website"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 22594
+
+[services.development]
+run = "pnpm --filter @workspace/aiif-website run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/aiif-website", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/aiif-website/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "22594"
+BASE_PATH = "/"
