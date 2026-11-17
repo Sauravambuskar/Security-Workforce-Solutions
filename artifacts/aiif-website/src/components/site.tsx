@@ -103,21 +103,21 @@ function Header() {
   }, [open]);
 
   return (
-    <header className={`sticky top-0 z-50 transition-[background-color,box-shadow] duration-300 ${scrolled ? "bg-background/90 backdrop-blur-md shadow-md" : "bg-background"}`}>
-      <div className="bg-navy-deep text-paper/80 text-[0.8rem] font-cond tracking-[0.14em] uppercase">
+    <header className={`sticky top-0 z-50 bg-navy-deep text-paper transition-shadow duration-300 ${scrolled ? "shadow-[0_12px_40px_rgba(0,0,0,.24)]" : ""}`}>
+      <div className="border-b border-paper/10 bg-[#040d1f] text-paper/70 text-[0.8rem] font-cond tracking-[0.14em] uppercase">
         <div className="mx-auto max-w-7xl px-5 h-9 flex items-center justify-between">
           <span className="flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-signal pulse-dot" /> 24/7 Support</span>
           <span className="hidden sm:block">{org.lines.join("  /  ")}</span>
           <a href={org.instagram} target="_blank" rel="noreferrer" className="flex items-center gap-1.5 hover:text-paper" data-testid="link-instagram-top"><Instagram className="h-3.5 w-3.5" /> @{org.handle}</a>
         </div>
       </div>
-      <div className="mx-auto max-w-7xl px-5 h-[76px] flex items-center justify-between">
-        <Link href="/" data-testid="link-logo" aria-label="AIIF home"><Logo /></Link>
+      <div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12 h-[80px] flex items-center justify-between">
+        <Link href="/" data-testid="link-logo" aria-label="AIIF home"><Logo light /></Link>
         <nav className="hidden lg:flex items-center gap-1" aria-label="Primary">
           {NAV.map((n) => {
             const active = location === n.href;
             return (
-              <Link key={n.href} href={n.href} data-testid={`link-nav-${n.label.toLowerCase()}`} className={`relative px-4 py-2 font-cond font-semibold uppercase tracking-[0.14em] text-[0.92rem] transition-colors ${active ? "text-signal" : "text-navy hover:text-signal"}`}>
+              <Link key={n.href} href={n.href} data-testid={`link-nav-${n.label.toLowerCase()}`} className={`relative px-4 py-2 font-cond font-semibold uppercase tracking-[0.14em] text-[0.92rem] transition-colors ${active ? "text-signal" : "text-paper/80 hover:text-paper"}`}>
                 {n.label}
                 {active && <motion.span layoutId="nav-underline" className="absolute left-4 right-4 -bottom-0.5 h-[2px] bg-signal" />}
               </Link>
@@ -129,10 +129,10 @@ function Header() {
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
       </div>
-      <div className="stripe-rule" />
+      <div className="h-1 bg-signal" />
       <AnimatePresence>
         {open && (
-          <motion.div initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12 }} transition={{ duration: 0.25 }} className="lg:hidden fixed inset-x-0 top-[121px] bottom-0 bg-navy-deep text-paper chevrons overflow-y-auto">
+          <motion.div initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12 }} transition={{ duration: 0.25 }} className="lg:hidden fixed inset-x-0 top-[125px] bottom-0 bg-navy-deep text-paper chevrons overflow-y-auto">
             <nav className="px-6 py-8 flex flex-col" aria-label="Mobile">
               {NAV.map((n, i) => (
                 <motion.div key={n.href} initial={{ opacity: 0, x: -16 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.04 * i }}>
@@ -204,11 +204,11 @@ export function Shell({ children }: { children: ReactNode }) {
 export function PageHero({ eyebrow, title, intro, image }: { eyebrow: string; title: ReactNode; intro: string; image: string }) {
   return (
     <section className="relative bg-navy-deep text-paper overflow-hidden">
-      <img src={image} alt="" className="absolute inset-0 h-full w-full object-cover opacity-35" />
-      <div className="absolute inset-0 bg-gradient-to-r from-navy-deep via-navy-deep/85 to-navy-deep/30" />
-      <div className="relative mx-auto max-w-7xl px-5 py-24 md:py-32">
-        <Reveal><span className="eyebrow">{eyebrow}</span></Reveal>
-        <Reveal delay={0.08}><h1 className="mt-5 text-5xl md:text-7xl font-bold uppercase leading-[0.95] max-w-4xl">{title}</h1></Reveal>
+      <img src={image} alt="" className="absolute inset-0 h-full w-full object-cover opacity-55" />
+      <div className="absolute inset-0 bg-gradient-to-r from-navy-deep via-navy-deep/90 to-navy-deep/20" />
+      <div className="relative mx-auto max-w-[1440px] px-5 py-28 sm:px-8 md:py-40 lg:px-12">
+        <Reveal><span className="section-kicker section-kicker-light">{eyebrow}</span></Reveal>
+        <Reveal delay={0.08}><h1 className="mt-7 text-6xl md:text-8xl font-bold uppercase leading-[0.86] tracking-[-0.035em] max-w-5xl">{title}</h1></Reveal>
         <Reveal delay={0.16}><p className="mt-6 max-w-2xl text-lg text-paper/80 leading-relaxed">{intro}</p></Reveal>
       </div>
       <div className="stripe-rule relative" />
@@ -220,10 +220,10 @@ export function CtaBand() {
   return (
     <section className="bg-signal text-paper relative overflow-hidden">
       <div className="chevrons absolute inset-0" />
-      <div className="relative mx-auto max-w-7xl px-5 py-14 flex flex-col md:flex-row md:items-center justify-between gap-8">
+      <div className="relative mx-auto max-w-[1440px] px-5 py-16 sm:px-8 lg:px-12 flex flex-col md:flex-row md:items-center justify-between gap-8">
         <div>
-          <h2 className="text-4xl md:text-5xl font-bold uppercase leading-none">Need a secure site by next shift?</h2>
-          <p className="mt-3 text-paper/85 text-lg">Tell us about your premises. We will come back with a deployment plan.</p>
+          <h2 className="text-5xl md:text-6xl font-bold uppercase leading-[0.9]">Secure your next shift.</h2>
+          <p className="mt-4 text-paper/85 text-lg">Tell us the site, roles and headcount. We will build the deployment plan.</p>
         </div>
         <div className="flex flex-wrap gap-3">
           <CTA href="/contact" variant="navy" testId="button-band-enquire">Send an Enquiry</CTA>

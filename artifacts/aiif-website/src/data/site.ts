@@ -127,10 +127,10 @@ export const services: Service[] = [
   {
     id: "staffing",
     code: "04",
-    name: "Staffing & Manpower",
-    short: "Reliable workforce supply beyond security roles.",
+    name: "Housekeeping & Facility Staff",
+    short: "Screened housekeeping and facility-support teams for dependable daily operations.",
     summary:
-      "Manpower supply for operational roles — housekeeping, facility support, front office and more — sourced, screened and placed so your site keeps running.",
+      "Housekeeping and facility-support teams sourced, screened and deployed for reliable daily operations, with attendance and replacement support built in.",
     image: staffing,
     scope: [
       "Sourcing and screening of candidates",
@@ -144,7 +144,7 @@ export const services: Service[] = [
       { step: "Placement", detail: "Onboard staff to your site." },
       { step: "Continuity", detail: "Cover gaps and manage replacements." },
     ],
-    suitedFor: ["Facilities", "Manufacturing", "Hospitality", "Healthcare"],
+    suitedFor: ["Corporate facilities", "Residential sites", "Hospitality", "Healthcare"],
   },
   {
     id: "payroll",
