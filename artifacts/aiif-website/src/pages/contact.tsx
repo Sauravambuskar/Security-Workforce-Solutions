@@ -47,7 +47,7 @@ export default function Contact() {
 
   return (
     <>
-      <PageHero eyebrow="Contact" title={<>Tell us about <span className="text-signal">your site</span></>} intro="Share your premises, requirement and timings, or connect through AIIF's verified public profile." image={images.corporateOfficers} />
+      <PageHero eyebrow="Contact" title={<>Tell us about <span className="text-signal">your site</span></>} intro="Share your premises, requirement and timings, or connect through AIIF's verified public profile." image={images.corporateOfficers} imageFocus="top" />
 
       <section id="page-content" className="mx-auto grid max-w-[1530px] gap-12 px-5 py-16 sm:px-8 md:py-24 lg:grid-cols-12 lg:px-12">
         <div className="lg:col-span-4 space-y-6">

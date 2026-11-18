@@ -113,11 +113,12 @@ export default function Home() {
           <div className="mt-12 grid gap-6 md:grid-cols-2">
             {services.map((service, index) => {
               const Icon = serviceIcons[service.id];
+              const imageFocus = service.imageFocus === "top" ? "object-top" : "object-center";
               return (
                 <Reveal key={service.id} delay={0.035 * index}>
                   <Link href={`/services?s=${service.id}`} data-testid={`card-service-${service.id}`} className="group block bg-navy-deep text-white">
                     <div className="relative overflow-hidden">
-                      <img src={service.image} alt="" width="1024" height="1024" loading="lazy" className="aspect-[16/9] w-full object-cover transition-transform duration-500 group-hover:scale-[1.025]" />
+                      <img src={service.image} alt="" width="1024" height="1024" loading="lazy" className={`aspect-[16/9] w-full object-cover ${imageFocus} transition-transform duration-500 group-hover:scale-[1.025]`} />
                       <span className="absolute right-6 top-6 grid h-14 w-14 place-items-center rounded-full bg-white text-signal shadow-sm transition-colors group-hover:bg-signal group-hover:text-white">
                         <Plus aria-hidden="true" className="h-5 w-5" />
                       </span>

@@ -20,7 +20,7 @@ export default function Services() {
 
   return (
     <>
-      <PageHero eyebrow="Our Services" title={<>Expert support for every part of the operation.</>} intro="AIIF combines security personnel, technology, investigation, workforce support and training in one integrated service model." image={images.tacticalGuards} />
+      <PageHero eyebrow="Our Services" title={<>Expert support for every part of the operation.</>} intro="AIIF combines security personnel, technology, investigation, workforce support and training in one integrated service model." image={images.tacticalGuards} imageFocus="top" />
 
       <section id="page-content" className="bg-white py-16 md:py-24">
         <div className="mx-auto max-w-[1530px] px-5 sm:px-8 lg:px-12">
@@ -33,11 +33,12 @@ export default function Services() {
             {services.map((service, index) => {
               const Icon = serviceIcons[service.id];
               const selected = active.id === service.id;
+              const imageFocus = service.imageFocus === "top" ? "object-top" : "object-center";
               return (
                 <Reveal key={service.id} delay={0.035 * index}>
                   <Link href={`/services?s=${service.id}#service-detail`} data-testid={`card-service-${service.id}`} aria-current={selected ? "page" : undefined} className={`group block text-white ${selected ? "bg-signal" : "bg-navy-deep"}`}>
                     <div className="relative overflow-hidden">
-                      <img src={service.image} alt="" width="1024" height="1024" loading="lazy" className="aspect-[16/9] w-full object-cover transition-transform duration-500 group-hover:scale-[1.025]" />
+                      <img src={service.image} alt="" width="1024" height="1024" loading="lazy" className={`aspect-[16/9] w-full object-cover ${imageFocus} transition-transform duration-500 group-hover:scale-[1.025]`} />
                       <span className={`absolute right-6 top-6 grid h-14 w-14 place-items-center rounded-full bg-white shadow-sm ${selected ? "text-navy" : "text-signal"}`}><Plus aria-hidden="true" className="h-5 w-5" /></span>
                     </div>
                     <div className="flex min-h-28 items-center gap-4 px-7 py-6">
@@ -57,7 +58,7 @@ export default function Services() {
           <p className="section-label">Selected Service</p>
           <div className="mt-10 grid gap-10 lg:grid-cols-2 lg:gap-16">
             <div>
-              <img src={active.image} alt={active.name} width="1024" height="1024" className="aspect-[4/3] w-full object-cover" />
+              <img src={active.image} alt={active.name} width="1024" height="1024" className={`aspect-[4/3] w-full object-cover ${active.imageFocus === "top" ? "object-top" : "object-center"}`} />
             </div>
             <article>
               <p className="text-sm font-semibold text-signal">Service {active.code}</p>

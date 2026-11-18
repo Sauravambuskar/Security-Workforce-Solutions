@@ -189,10 +189,10 @@ export function Shell({ children }: { children: ReactNode }) {
   );
 }
 
-export function PageHero({ eyebrow, title, intro, image }: { eyebrow: string; title: ReactNode; intro: string; image: string }) {
+export function PageHero({ eyebrow, title, intro, image, imageFocus = "center" }: { eyebrow: string; title: ReactNode; intro: string; image: string; imageFocus?: "center" | "top" }) {
   return (
     <section className="relative min-h-[520px] overflow-hidden bg-navy-deep text-white md:min-h-[620px]">
-      <img src={image} alt="" width="1536" height="1024" fetchPriority="high" className="absolute inset-0 h-full w-full object-cover object-center" />
+      <img src={image} alt="" width="1536" height="1024" fetchPriority="high" className={`absolute inset-0 h-full w-full object-cover ${imageFocus === "top" ? "object-top" : "object-center"}`} />
       <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(4,22,33,.92)_0%,rgba(4,22,33,.72)_42%,rgba(4,22,33,.1)_78%)]" />
       <div className="relative mx-auto flex min-h-[520px] max-w-[1530px] items-end px-5 pb-16 sm:px-8 md:min-h-[620px] md:pb-20 lg:px-12">
         <div className="max-w-2xl">

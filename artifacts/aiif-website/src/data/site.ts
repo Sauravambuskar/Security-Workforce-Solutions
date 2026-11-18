@@ -25,6 +25,7 @@ export interface Service {
   short: string;
   summary: string;
   image: string;
+  imageFocus?: "center" | "top";
   scope: string[];
   process: { step: string; detail: string }[];
   suitedFor: string[];
@@ -149,6 +150,7 @@ export const services: Service[] = [
     summary:
       "Housekeeping and facility-support teams sourced, screened and deployed for reliable daily operations, with attendance and replacement support built in.",
     image: facilityTeamGrey,
+    imageFocus: "top",
     scope: [
       "Sourcing and screening of candidates",
       "Short-term and long-term deployment",
@@ -171,6 +173,7 @@ export const services: Service[] = [
     summary:
       "Payroll processing for deployed workforces — attendance to salary, with organised records — so your team spends less time on administration.",
     image: corporateOfficers,
+    imageFocus: "top",
     scope: [
       "Attendance-to-salary processing",
       "Payslip preparation",
