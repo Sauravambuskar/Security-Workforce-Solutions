@@ -2,15 +2,15 @@ import { Link } from "wouter";
 import { CtaBand, PageHero, Reveal, useSeo } from "@/components/site";
 import { images, industries, organizationSchema, pages, services } from "@/data/site";
 
-const pics = [images.heroGuard, images.nightPatrol, images.teamBriefing, images.surveillance, images.training, images.staffing];
+const pics = [images.aiifTeamHero, images.aiifHousekeeping, images.aiifFieldTeam, images.surveillance, images.aiifFieldTeam, images.aiifHousekeeping];
 
 export default function Industries() {
   useSeo(pages.industries, [organizationSchema]);
   return (
     <>
-      <PageHero eyebrow="Industries" title={<>Different sites. <span className="text-signal">Same discipline.</span></>} intro="Every premises has its own rhythm. Here is how AIIF adapts guarding, surveillance and workforce support to the sectors we serve." image={images.nightPatrol} />
+      <PageHero eyebrow="Industries" title={<>Different sites. <span className="text-signal">Same discipline.</span></>} intro="Every premises has its own rhythm. Here is how AIIF adapts guarding, surveillance and workforce support to the sectors we serve." image={images.aiifTeamHero} />
 
-      <nav aria-label="Jump to industry" className="sticky top-[121px] z-30 bg-background/95 backdrop-blur border-b border-border">
+      <nav aria-label="Jump to industry" className="sticky top-[89px] z-30 border-b border-border bg-background/95 backdrop-blur lg:top-[153px]">
         <div className="mx-auto max-w-7xl px-5 flex gap-6 overflow-x-auto py-4 font-cond uppercase tracking-[0.14em] text-sm whitespace-nowrap">
           {industries.map((i) => <a key={i.id} href={`#${i.id}`} className="text-navy hover:text-signal transition-colors" data-testid={`link-jump-${i.id}`}>{i.name}</a>)}
         </div>
@@ -21,7 +21,7 @@ export default function Industries() {
           <section key={ind.id} id={ind.id} className="scroll-mt-48 grid lg:grid-cols-12 gap-10 items-center">
             <Reveal className={`lg:col-span-5 ${idx % 2 ? "lg:order-2" : ""}`}>
               <div className="relative">
-                <img src={pics[idx % pics.length]} alt="" loading="lazy" className="rounded-sm aspect-[4/3] object-cover w-full shadow-lg" />
+                <img src={pics[idx % pics.length]} alt="" width="1536" height="1024" loading="lazy" className="aspect-[4/3] w-full object-cover shadow-lg" />
                 <span className="absolute -top-4 -left-4 h-16 w-16 grid place-items-center bg-signal text-paper font-display text-2xl rounded-sm">0{idx + 1}</span>
               </div>
             </Reveal>

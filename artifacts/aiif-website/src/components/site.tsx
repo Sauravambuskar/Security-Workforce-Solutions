@@ -1,27 +1,25 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { Link, useLocation } from "wouter";
-import { motion, useReducedMotion, AnimatePresence } from "framer-motion";
-import { Menu, X, ArrowRight, ArrowUpRight, Instagram, Clock } from "lucide-react";
-import logo from "@/assets/aiif-logo.png";
+import { AnimatePresence, motion } from "framer-motion";
+import { ArrowDown, ArrowRight, Clock3, Instagram, Menu, X } from "lucide-react";
 import { org, services, type PageMeta } from "@/data/site";
 
 const NAV = [
   { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
+  { href: "/about", label: "About Us" },
   { href: "/services", label: "Services" },
   { href: "/industries", label: "Industries" },
   { href: "/contact", label: "Contact" },
 ];
 
-/* ---------- SEO ---------- */
 function setMeta(attr: "name" | "property", key: string, content: string) {
-  let el = document.head.querySelector<HTMLMetaElement>(`meta[${attr}="${key}"]`);
-  if (!el) {
-    el = document.createElement("meta");
-    el.setAttribute(attr, key);
-    document.head.appendChild(el);
+  let element = document.head.querySelector<HTMLMetaElement>(`meta[${attr}="${key}"]`);
+  if (!element) {
+    element = document.createElement("meta");
+    element.setAttribute(attr, key);
+    document.head.appendChild(element);
   }
-  el.content = content;
+  element.content = content;
 }
 
 export function useSeo(meta: PageMeta, jsonLd: object[]) {
@@ -34,113 +32,103 @@ export function useSeo(meta: PageMeta, jsonLd: object[]) {
     setMeta("property", "og:url", window.location.origin + meta.path);
     setMeta("name", "twitter:title", meta.title);
     setMeta("name", "twitter:description", meta.description);
-    const s = document.createElement("script");
-    s.type = "application/ld+json";
-    s.dataset.page = "1";
-    s.text = ld;
-    document.head.appendChild(s);
-    return () => s.remove();
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.dataset.page = "1";
+    script.text = ld;
+    document.head.appendChild(script);
+    return () => script.remove();
   }, [meta.title, meta.description, meta.path, ld]);
 }
 
-/* ---------- Motion ---------- */
-export function Reveal({ children, delay = 0, className, y = 28 }: { children: ReactNode; delay?: number; className?: string; y?: number }) {
-  const reduce = useReducedMotion();
-  return (
-    <motion.div
-      className={className}
-      initial={reduce ? false : { opacity: 0, y }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
-    >
-      {children}
-    </motion.div>
-  );
+export function Reveal({ children, delay = 0, className }: { children: ReactNode; delay?: number; className?: string; y?: number }) {
+  void delay;
+  return <div className={className}>{children}</div>;
 }
 
-export function Logo({ size = 44, light = false }: { size?: number; light?: boolean }) {
+export function Logo({ compact = false, light = false }: { compact?: boolean; light?: boolean; size?: number }) {
   return (
-    <span className="flex items-center gap-3">
-      <img src={logo} alt="AIIF logo" width={size} height={size} className="rounded-full shrink-0 ring-1 ring-black/10" style={{ width: size, height: size }} />
-      <span className="leading-none">
-        <span className={`block font-display font-bold text-[1.35rem] tracking-wide ${light ? "text-paper" : "text-navy"}`}>AIIF</span>
-        <span className={`block font-cond text-[0.62rem] uppercase tracking-[0.18em] mt-1 ${light ? "text-paper/70" : "text-muted-foreground"}`}>Alliance International Integrated Force</span>
+    <span className="flex min-w-0 items-center gap-3" translate="no">
+      <span aria-hidden="true" className={`grid h-12 w-14 shrink-0 place-items-center border-2 font-display text-lg font-semibold tracking-[0.08em] sm:h-[58px] sm:w-[66px] ${light ? "border-white text-white" : "border-navy-deep text-navy-deep"}`}>AIIF</span>
+      <span className={compact ? "hidden sm:block" : "block"}>
+        <span className={`block text-[1.18rem] font-semibold leading-none tracking-[0.06em] ${light ? "text-white" : "text-navy-deep"}`}>Alliance International</span>
+        <span className={`mt-1 block max-w-[210px] text-[0.58rem] font-semibold uppercase leading-tight tracking-[0.16em] ${light ? "text-white/70" : "text-slate-500"}`}>Integrated Force</span>
       </span>
     </span>
   );
 }
 
-export function CTA({ href, children, variant = "red", testId }: { href: string; children: ReactNode; variant?: "red" | "navy" | "ghost" | "light"; testId: string }) {
+export function CTA({ href, children, variant = "primary", testId }: { href: string; children: ReactNode; variant?: "primary" | "navy" | "ghost" | "light"; testId: string }) {
   const styles = {
-    red: "bg-signal text-paper hover:bg-[hsl(356_80%_40%)]",
-    navy: "bg-navy text-paper hover:bg-navy-deep",
-    ghost: "border border-navy/25 text-navy hover:border-navy hover:bg-navy/5",
-    light: "border border-paper/40 text-paper hover:bg-paper hover:text-navy",
+    primary: "bg-signal text-white hover:bg-[#1649bc]",
+    navy: "bg-navy text-white hover:bg-navy-deep",
+    ghost: "border border-navy/30 text-navy hover:border-navy hover:bg-navy hover:text-white",
+    light: "border border-white/65 text-white hover:bg-white hover:text-navy-deep",
   }[variant];
   return (
-    <Link href={href} data-testid={testId} className={`group inline-flex items-center gap-3 px-6 py-3.5 font-cond font-semibold uppercase tracking-[0.12em] text-[0.95rem] rounded-sm transition-colors duration-300 ${styles}`}>
+    <Link href={href} data-testid={testId} className={`group inline-flex min-h-12 items-center justify-center gap-3 px-6 py-3 text-sm font-semibold transition-[background-color,color,border-color] ${styles}`}>
       {children}
-      <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+      <ArrowRight aria-hidden="true" className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
     </Link>
   );
 }
 
-/* ---------- Header ---------- */
 function Header() {
   const [location] = useLocation();
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  useEffect(() => {
-    const on = () => setScrolled(window.scrollY > 24);
-    on();
-    window.addEventListener("scroll", on, { passive: true });
-    return () => window.removeEventListener("scroll", on);
-  }, []);
+
   useEffect(() => setOpen(false), [location]);
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
   }, [open]);
 
   return (
-    <header className={`sticky top-0 z-50 bg-navy-deep text-paper transition-shadow duration-300 ${scrolled ? "shadow-[0_12px_40px_rgba(0,0,0,.24)]" : ""}`}>
-      <div className="border-b border-paper/10 bg-[#040d1f] text-paper/70 text-[0.8rem] font-cond tracking-[0.14em] uppercase">
-        <div className="mx-auto max-w-7xl px-5 h-9 flex items-center justify-between">
-          <span className="flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-signal pulse-dot" /> 24/7 Support</span>
-          <span className="hidden sm:block">{org.lines.join("  /  ")}</span>
-          <a href={org.instagram} target="_blank" rel="noreferrer" className="flex items-center gap-1.5 hover:text-paper" data-testid="link-instagram-top"><Instagram className="h-3.5 w-3.5" /> @{org.handle}</a>
-        </div>
-      </div>
-      <div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12 h-[80px] flex items-center justify-between">
-        <Link href="/" data-testid="link-logo" aria-label="AIIF home"><Logo light /></Link>
-        <nav className="hidden lg:flex items-center gap-1" aria-label="Primary">
-          {NAV.map((n) => {
-            const active = location === n.href;
+    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white text-slate-700 shadow-[0_1px_0_rgba(15,23,42,.04)]">
+      <div className="mx-auto flex h-[88px] max-w-[1530px] items-center justify-between gap-8 px-5 sm:px-8 lg:px-12">
+        <Link href="/" data-testid="link-logo" aria-label="AIIF home" className="shrink-0"><Logo compact /></Link>
+        <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary navigation">
+          {NAV.map((item) => {
+            const active = location === item.href;
             return (
-              <Link key={n.href} href={n.href} data-testid={`link-nav-${n.label.toLowerCase()}`} className={`relative px-4 py-2 font-cond font-semibold uppercase tracking-[0.14em] text-[0.92rem] transition-colors ${active ? "text-signal" : "text-paper/80 hover:text-paper"}`}>
-                {n.label}
-                {active && <motion.span layoutId="nav-underline" className="absolute left-4 right-4 -bottom-0.5 h-[2px] bg-signal" />}
+              <Link key={item.href} href={item.href} data-testid={`link-nav-${item.label.toLowerCase().replaceAll(" ", "-")}`} className={`relative px-5 py-3 text-[0.88rem] font-medium transition-colors ${active ? "text-signal" : "text-slate-500 hover:text-navy"}`}>
+                {item.label}
+                {active && <span className="absolute inset-x-5 -bottom-[21px] h-0.5 bg-signal" />}
               </Link>
             );
           })}
         </nav>
-        <div className="hidden lg:block"><CTA href="/contact" testId="button-header-quote">Request a Proposal</CTA></div>
-        <button onClick={() => setOpen((v) => !v)} className="lg:hidden h-11 w-11 grid place-items-center rounded-sm bg-navy text-paper" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} data-testid="button-mobile-menu">
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        <a href={org.instagram} target="_blank" rel="noreferrer" aria-label="AIIF on Instagram" className="hidden h-11 w-11 place-items-center border border-slate-200 text-slate-500 transition-colors hover:border-navy hover:text-navy lg:grid">
+          <Instagram aria-hidden="true" className="h-4 w-4" />
+        </a>
+        <button type="button" onClick={() => setOpen((value) => !value)} className="grid h-12 w-12 shrink-0 place-items-center border border-slate-300 text-navy lg:hidden" aria-label={open ? "Close navigation" : "Open navigation"} aria-expanded={open} aria-controls="mobile-navigation">
+          {open ? <X aria-hidden="true" className="h-5 w-5" /> : <Menu aria-hidden="true" className="h-5 w-5" />}
         </button>
       </div>
-      <div className="h-1 bg-signal" />
+
+      <nav className="hidden border-t border-slate-200 lg:block" aria-label="Service navigation">
+        <div className="mx-auto grid max-w-[1530px] grid-cols-6 px-12">
+          {services.map((service) => (
+            <Link key={service.id} href={`/services?s=${service.id}`} className="flex min-h-16 items-center justify-center border-r border-slate-200 px-4 text-center text-xs font-semibold leading-snug text-slate-800 first:border-l hover:bg-slate-50 hover:text-signal">
+              {service.name}
+            </Link>
+          ))}
+        </div>
+      </nav>
+
       <AnimatePresence>
         {open && (
-          <motion.div initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12 }} transition={{ duration: 0.25 }} className="lg:hidden fixed inset-x-0 top-[125px] bottom-0 bg-navy-deep text-paper chevrons overflow-y-auto">
-            <nav className="px-6 py-8 flex flex-col" aria-label="Mobile">
-              {NAV.map((n, i) => (
-                <motion.div key={n.href} initial={{ opacity: 0, x: -16 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.04 * i }}>
-                  <Link href={n.href} data-testid={`link-mobile-${n.label.toLowerCase()}`} className={`flex items-center justify-between py-4 border-b border-paper/10 font-display text-3xl uppercase ${location === n.href ? "text-signal" : ""}`}>
-                    {n.label} <ArrowUpRight className="h-5 w-5 opacity-50" />
-                  </Link>
-                </motion.div>
+          <motion.div id="mobile-navigation" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="mobile-drawer fixed inset-x-0 bottom-0 top-[89px] overflow-y-auto bg-white lg:hidden">
+            <nav className="px-5 py-5" aria-label="Mobile navigation">
+              {NAV.map((item) => (
+                <Link key={item.href} href={item.href} className={`flex min-h-14 items-center justify-between border-b border-slate-200 text-xl font-medium ${location === item.href ? "text-signal" : "text-navy-deep"}`}>
+                  {item.label}<ArrowRight aria-hidden="true" className="h-4 w-4" />
+                </Link>
               ))}
+              <p className="mt-8 text-xs font-semibold text-signal">Services</p>
+              <div className="mt-2 grid gap-1">
+                {services.map((service) => <Link key={service.id} href={`/services?s=${service.id}`} className="py-2 text-sm text-slate-600 hover:text-navy">{service.name}</Link>)}
+              </div>
               <div className="mt-8"><CTA href="/contact" testId="button-mobile-quote">Request a Proposal</CTA></div>
             </nav>
           </motion.div>
@@ -150,35 +138,35 @@ function Header() {
   );
 }
 
-/* ---------- Footer ---------- */
 function Footer() {
   return (
-    <footer className="bg-navy-deep text-paper/75 relative overflow-hidden">
-      <div className="chevrons absolute inset-0" />
-      <div className="relative mx-auto max-w-7xl px-5 pt-20 pb-10">
-        <div className="grid gap-12 md:grid-cols-12">
-          <div className="md:col-span-5">
-            <Logo light size={56} />
-            <p className="mt-6 max-w-sm leading-relaxed">{org.legalName}. {org.pillars.join(", ")}. Home of @ioemsltd.</p>
-            <p className="mt-4 font-display text-paper text-2xl uppercase tracking-wide">{org.tagline}</p>
+    <footer className="bg-[#26394d] text-white/75">
+      <div className="mx-auto max-w-[1530px] px-5 py-16 sm:px-8 lg:px-12 lg:py-20">
+        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-12">
+          <div className="lg:col-span-4">
+            <Logo light />
+            <p className="mt-6 max-w-sm text-sm leading-6">Integrated security, investigation, workforce, payroll and training support for organisations across India.</p>
+            <p className="mt-5 max-w-sm text-xs leading-5 text-white/55">Registered office: {org.registeredOffice}</p>
+            <p className="mt-2 text-xs text-white/55">CIN: {org.cin}</p>
+            <p className="mt-6 flex items-center gap-2 text-sm text-white"><Clock3 aria-hidden="true" className="h-4 w-4 text-signal" /> 24/7 operational support</p>
           </div>
-          <div className="md:col-span-2">
-            <h4 className="font-cond uppercase tracking-[0.2em] text-sm text-paper mb-4">Company</h4>
-            <ul className="space-y-2.5">{NAV.map((n) => <li key={n.href}><Link href={n.href} className="hover:text-paper" data-testid={`link-footer-${n.label.toLowerCase()}`}>{n.label}</Link></li>)}</ul>
+          <div className="lg:col-span-2">
+            <h2 className="text-sm font-semibold text-white">Company</h2>
+            <ul className="mt-5 space-y-3 text-sm">{NAV.map((item) => <li key={item.href}><Link href={item.href} className="hover:text-white">{item.label}</Link></li>)}</ul>
           </div>
-          <div className="md:col-span-3">
-            <h4 className="font-cond uppercase tracking-[0.2em] text-sm text-paper mb-4">Services</h4>
-            <ul className="space-y-2.5">{services.map((s) => <li key={s.id}><Link href={`/services?s=${s.id}`} className="hover:text-paper" data-testid={`link-footer-service-${s.id}`}>{s.name}</Link></li>)}</ul>
+          <div className="lg:col-span-4">
+            <h2 className="text-sm font-semibold text-white">Services</h2>
+            <ul className="mt-5 grid gap-3 text-sm sm:grid-cols-2">{services.map((service) => <li key={service.id}><Link href={`/services?s=${service.id}`} className="hover:text-white">{service.name}</Link></li>)}</ul>
           </div>
-          <div className="md:col-span-2">
-            <h4 className="font-cond uppercase tracking-[0.2em] text-sm text-paper mb-4">Reach</h4>
-            <a href={org.instagram} target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-paper" data-testid="link-footer-instagram"><Instagram className="h-4 w-4" /> Instagram</a>
-            <p className="mt-3 flex items-center gap-2"><Clock className="h-4 w-4" /> 24/7 Support</p>
+          <div className="lg:col-span-2">
+            <h2 className="text-sm font-semibold text-white">Connect</h2>
+            <a href={org.instagram} target="_blank" rel="noreferrer" className="mt-5 flex items-center gap-2 text-sm hover:text-white"><Instagram aria-hidden="true" className="h-4 w-4" /> @{org.handle}</a>
+            <div className="mt-7"><CTA href="/contact" variant="light" testId="button-footer-contact">Get in Touch</CTA></div>
           </div>
         </div>
-        <div className="mt-16 pt-6 border-t border-paper/10 flex flex-col sm:flex-row gap-3 justify-between text-sm">
-          <span>&copy; {new Date().getFullYear()} {org.legalName}</span>
-          <span className="text-paper/50">Client presentation build. Contact details to be confirmed by AIIF.</span>
+        <div className="mt-14 flex flex-col gap-3 border-t border-white/15 pt-6 text-xs text-white/45 sm:flex-row sm:justify-between">
+          <span>© {new Date().getFullYear()} {org.legalName}</span>
+          <span>Security · Investigation · Education</span>
         </div>
       </div>
     </footer>
@@ -188,47 +176,44 @@ function Footer() {
 export function Shell({ children }: { children: ReactNode }) {
   const [location] = useLocation();
   useEffect(() => {
-    if (!window.location.search) window.scrollTo({ top: 0 });
+    if (!window.location.search && !window.location.hash) window.scrollTo({ top: 0 });
   }, [location]);
   return (
-    <div className="grain min-h-[100dvh] flex flex-col">
-      <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:z-[70] focus:m-3 focus:p-3 focus:bg-navy focus:text-paper">Skip to content</a>
+    <div className="min-h-[100dvh] overflow-x-hidden bg-white">
+      <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-3 focus:top-3 focus:z-[80] focus:bg-navy focus:px-4 focus:py-3 focus:text-white">Skip to content</a>
       <Header />
-      <main id="main" className="flex-1">{children}</main>
+      <main id="main">{children}</main>
       <Footer />
     </div>
   );
 }
 
-/* ---------- Shared blocks ---------- */
 export function PageHero({ eyebrow, title, intro, image }: { eyebrow: string; title: ReactNode; intro: string; image: string }) {
   return (
-    <section className="relative bg-navy-deep text-paper overflow-hidden">
-      <img src={image} alt="" className="absolute inset-0 h-full w-full object-cover opacity-55" />
-      <div className="absolute inset-0 bg-gradient-to-r from-navy-deep via-navy-deep/90 to-navy-deep/20" />
-      <div className="relative mx-auto max-w-[1440px] px-5 py-28 sm:px-8 md:py-40 lg:px-12">
-        <Reveal><span className="section-kicker section-kicker-light">{eyebrow}</span></Reveal>
-        <Reveal delay={0.08}><h1 className="mt-7 text-6xl md:text-8xl font-bold uppercase leading-[0.86] tracking-[-0.035em] max-w-5xl">{title}</h1></Reveal>
-        <Reveal delay={0.16}><p className="mt-6 max-w-2xl text-lg text-paper/80 leading-relaxed">{intro}</p></Reveal>
+    <section className="relative min-h-[520px] overflow-hidden bg-navy-deep text-white md:min-h-[620px]">
+      <img src={image} alt="" width="1536" height="1024" fetchPriority="high" className="absolute inset-0 h-full w-full object-cover object-center" />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(4,22,33,.92)_0%,rgba(4,22,33,.72)_42%,rgba(4,22,33,.1)_78%)]" />
+      <div className="relative mx-auto flex min-h-[520px] max-w-[1530px] items-end px-5 pb-16 sm:px-8 md:min-h-[620px] md:pb-20 lg:px-12">
+        <div className="max-w-2xl">
+          <p className="text-sm font-semibold text-signal">{eyebrow}</p>
+          <h1 className="mt-5 text-balance text-[2.5rem] font-semibold leading-[1.02] md:text-7xl">{title}</h1>
+          <p className="mt-6 max-w-xl text-pretty text-lg leading-7 text-white/80">{intro}</p>
+          <a href="#page-content" className="mt-8 inline-flex items-center gap-3 text-sm font-semibold hover:text-signal"><span className="grid h-9 w-9 place-items-center rounded-full border border-signal text-signal"><ArrowDown aria-hidden="true" className="h-4 w-4" /></span> Explore this page</a>
+        </div>
       </div>
-      <div className="stripe-rule relative" />
     </section>
   );
 }
 
 export function CtaBand() {
   return (
-    <section className="bg-signal text-paper relative overflow-hidden">
-      <div className="chevrons absolute inset-0" />
-      <div className="relative mx-auto max-w-[1440px] px-5 py-16 sm:px-8 lg:px-12 flex flex-col md:flex-row md:items-center justify-between gap-8">
+    <section className="bg-[#edf2f7]">
+      <div className="mx-auto flex max-w-[1530px] flex-col gap-7 px-5 py-14 sm:px-8 md:flex-row md:items-center md:justify-between lg:px-12">
         <div>
-          <h2 className="text-5xl md:text-6xl font-bold uppercase leading-[0.9]">Secure your next shift.</h2>
-          <p className="mt-4 text-paper/85 text-lg">Tell us the site, roles and headcount. We will build the deployment plan.</p>
+          <p className="section-label">Start a conversation</p>
+          <h2 className="mt-5 text-balance text-4xl font-semibold text-navy-deep md:text-5xl">Plan the right team for your site.</h2>
         </div>
-        <div className="flex flex-wrap gap-3">
-          <CTA href="/contact" variant="navy" testId="button-band-enquire">Send an Enquiry</CTA>
-          <CTA href="/services" variant="light" testId="button-band-services">View Services</CTA>
-        </div>
+        <CTA href="/contact" variant="navy" testId="button-band-enquire">Request a Proposal</CTA>
       </div>
     </section>
   );

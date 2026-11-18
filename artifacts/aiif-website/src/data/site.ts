@@ -1,10 +1,9 @@
-import heroGuard from "@/assets/hero-guard.jpg";
 import surveillance from "@/assets/surveillance.jpg";
-import teamBriefing from "@/assets/team-briefing.jpg";
-import training from "@/assets/training.jpg";
 import investigation from "@/assets/investigation.jpg";
-import staffing from "@/assets/staffing.jpg";
-import nightPatrol from "@/assets/night-patrol.jpg";
+import aiifTeamHero from "@/assets/aiif-team-hero.jpg";
+import aiifHousekeeping from "@/assets/aiif-housekeeping.jpg";
+import aiifFieldTeam from "@/assets/aiif-field-team.jpg";
+import aiifPayroll from "@/assets/aiif-payroll.jpg";
 
 /* ---------- Schema ---------- */
 export type ServiceId =
@@ -51,9 +50,19 @@ export const org = {
   pillars: ["Security", "Investigation", "Education"],
   lines: ["Security", "Staffing", "Payroll"],
   country: "India",
+  cin: "U80100MR2026PTC476832",
+  incorporatedOn: "20 May 2026",
+  registeredOffice: "H. No. 560, Flat 302, 3rd Floor, Mankoli Village, Bhiwandi, Thane, Maharashtra 421302, India",
 } as const;
 
-export const images = { heroGuard, surveillance, teamBriefing, training, investigation, staffing, nightPatrol };
+export const images = {
+  surveillance,
+  investigation,
+  aiifTeamHero,
+  aiifHousekeeping,
+  aiifFieldTeam,
+  aiifPayroll,
+};
 
 /* ---------- Services ---------- */
 export const services: Service[] = [
@@ -64,7 +73,7 @@ export const services: Service[] = [
     short: "Disciplined, uniformed personnel for gates, floors and perimeters.",
     summary:
       "Uniformed guards deployed to a written post order for your site — access control, visitor logs, patrols and incident reporting, supervised and accountable shift by shift.",
-    image: heroGuard,
+    image: aiifTeamHero,
     scope: [
       "Gate and access control with visitor and vehicle registers",
       "Static posts and scheduled perimeter patrols",
@@ -131,7 +140,7 @@ export const services: Service[] = [
     short: "Screened housekeeping and facility-support teams for dependable daily operations.",
     summary:
       "Housekeeping and facility-support teams sourced, screened and deployed for reliable daily operations, with attendance and replacement support built in.",
-    image: staffing,
+    image: aiifHousekeeping,
     scope: [
       "Sourcing and screening of candidates",
       "Short-term and long-term deployment",
@@ -153,7 +162,7 @@ export const services: Service[] = [
     short: "Wages, attendance and records handled in one place.",
     summary:
       "Payroll processing for deployed workforces — attendance to salary, with organised records — so your team spends less time on administration.",
-    image: teamBriefing,
+    image: aiifPayroll,
     scope: [
       "Attendance-to-salary processing",
       "Payslip preparation",
@@ -175,7 +184,7 @@ export const services: Service[] = [
     short: "Building skill and discipline in security professionals.",
     summary:
       "Training that turns recruits into dependable professionals — conduct, observation, communication, emergency response and site-specific briefings.",
-    image: training,
+    image: aiifFieldTeam,
     scope: [
       "Induction training for new personnel",
       "Conduct, grooming and communication",
@@ -218,6 +227,16 @@ export const organizationSchema = {
   name: org.legalName,
   alternateName: org.shortName,
   slogan: org.tagline,
+  foundingDate: "2026-05-20",
+  identifier: org.cin,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "H. No. 560, Flat 302, 3rd Floor, Mankoli Village",
+    addressLocality: "Bhiwandi",
+    addressRegion: "Maharashtra",
+    postalCode: "421302",
+    addressCountry: "IN",
+  },
   sameAs: [org.instagram],
   areaServed: { "@type": "Country", name: "India" },
   knowsAbout: services.map((s) => s.name),
