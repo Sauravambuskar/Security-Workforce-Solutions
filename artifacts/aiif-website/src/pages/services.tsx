@@ -20,7 +20,7 @@ export default function Services() {
 
   return (
     <>
-      <PageHero eyebrow="Our Services" title={<>Expert support for every part of the operation.</>} intro="AIIF combines security personnel, technology, investigation, workforce support and training in one integrated service model." image={images.surveillance} />
+      <PageHero eyebrow="Our Services" title={<>Expert support for every part of the operation.</>} intro="AIIF combines security personnel, technology, investigation, workforce support and training in one integrated service model." image={images.tacticalGuards} />
 
       <section id="page-content" className="bg-white py-16 md:py-24">
         <div className="mx-auto max-w-[1530px] px-5 sm:px-8 lg:px-12">

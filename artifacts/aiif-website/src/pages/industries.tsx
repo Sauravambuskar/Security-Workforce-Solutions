@@ -2,13 +2,13 @@ import { Link } from "wouter";
 import { CtaBand, PageHero, Reveal, useSeo } from "@/components/site";
 import { images, industries, organizationSchema, pages, services } from "@/data/site";
 
-const pics = [images.aiifTeamHero, images.aiifHousekeeping, images.aiifFieldTeam, images.surveillance, images.aiifFieldTeam, images.aiifHousekeeping];
+const pics = [images.headquartersTeam, images.facilityTeamBlack, images.trainingTeam, images.surveillance, images.tacticalGuards, images.indianSecurityTeam];
 
 export default function Industries() {
   useSeo(pages.industries, [organizationSchema]);
   return (
     <>
-      <PageHero eyebrow="Industries" title={<>Different sites. <span className="text-signal">Same discipline.</span></>} intro="Every premises has its own rhythm. Here is how AIIF adapts guarding, surveillance and workforce support to the sectors we serve." image={images.aiifTeamHero} />
+      <PageHero eyebrow="Industries" title={<>Different sites. <span className="text-signal">Same discipline.</span></>} intro="Every premises has its own rhythm. Here is how AIIF adapts guarding, surveillance and workforce support to the sectors we serve." image={images.tacticalGuards} />
 
       <nav aria-label="Jump to industry" className="sticky top-[89px] z-30 border-b border-border bg-background/95 backdrop-blur lg:top-[153px]">
         <div className="mx-auto max-w-7xl px-5 flex gap-6 overflow-x-auto py-4 font-cond uppercase tracking-[0.14em] text-sm whitespace-nowrap">

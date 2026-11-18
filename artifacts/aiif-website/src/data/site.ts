@@ -1,9 +1,13 @@
 import surveillance from "@/assets/surveillance.jpg";
 import investigation from "@/assets/investigation.jpg";
-import aiifTeamHero from "@/assets/aiif-team-hero.jpg";
-import aiifHousekeeping from "@/assets/aiif-housekeeping.jpg";
-import aiifFieldTeam from "@/assets/aiif-field-team.jpg";
-import aiifPayroll from "@/assets/aiif-payroll.jpg";
+import recruitmentPoster from "@/assets/client-originals/aiif-recruitment-poster.jpeg";
+import indianSecurityTeam from "@/assets/client-originals/aiif-indian-security-team.jpeg";
+import facilityTeamGrey from "@/assets/client-originals/aiif-facility-team-grey.jpeg";
+import tacticalGuards from "@/assets/client-originals/aiif-tactical-guards.jpg";
+import facilityTeamBlack from "@/assets/client-originals/aiif-facility-team-black.jpeg";
+import headquartersTeam from "@/assets/client-originals/aiif-headquarters-team.jpg";
+import trainingTeam from "@/assets/client-originals/aiif-training-team.jpg";
+import corporateOfficers from "@/assets/client-originals/aiif-corporate-officers.jpg";
 
 /* ---------- Schema ---------- */
 export type ServiceId =
@@ -58,10 +62,14 @@ export const org = {
 export const images = {
   surveillance,
   investigation,
-  aiifTeamHero,
-  aiifHousekeeping,
-  aiifFieldTeam,
-  aiifPayroll,
+  recruitmentPoster,
+  indianSecurityTeam,
+  facilityTeamGrey,
+  tacticalGuards,
+  facilityTeamBlack,
+  headquartersTeam,
+  trainingTeam,
+  corporateOfficers,
 };
 
 /* ---------- Services ---------- */
@@ -73,7 +81,7 @@ export const services: Service[] = [
     short: "Disciplined, uniformed personnel for gates, floors and perimeters.",
     summary:
       "Uniformed guards deployed to a written post order for your site — access control, visitor logs, patrols and incident reporting, supervised and accountable shift by shift.",
-    image: aiifTeamHero,
+    image: headquartersTeam,
     scope: [
       "Gate and access control with visitor and vehicle registers",
       "Static posts and scheduled perimeter patrols",
@@ -140,7 +148,7 @@ export const services: Service[] = [
     short: "Screened housekeeping and facility-support teams for dependable daily operations.",
     summary:
       "Housekeeping and facility-support teams sourced, screened and deployed for reliable daily operations, with attendance and replacement support built in.",
-    image: aiifHousekeeping,
+    image: facilityTeamGrey,
     scope: [
       "Sourcing and screening of candidates",
       "Short-term and long-term deployment",
@@ -162,7 +170,7 @@ export const services: Service[] = [
     short: "Wages, attendance and records handled in one place.",
     summary:
       "Payroll processing for deployed workforces — attendance to salary, with organised records — so your team spends less time on administration.",
-    image: aiifPayroll,
+    image: corporateOfficers,
     scope: [
       "Attendance-to-salary processing",
       "Payslip preparation",
@@ -184,7 +192,7 @@ export const services: Service[] = [
     short: "Building skill and discipline in security professionals.",
     summary:
       "Training that turns recruits into dependable professionals — conduct, observation, communication, emergency response and site-specific briefings.",
-    image: aiifFieldTeam,
+    image: trainingTeam,
     scope: [
       "Induction training for new personnel",
       "Conduct, grooming and communication",

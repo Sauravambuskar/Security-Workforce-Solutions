@@ -32,7 +32,7 @@ export default function Home() {
   return (
     <>
       <section className="relative min-h-[620px] overflow-hidden bg-navy-deep text-white md:min-h-[720px]">
-        <img src={images.aiifTeamHero} alt="Integrated Indian security team ready for deployment" width="1752" height="897" fetchPriority="high" className="absolute inset-0 h-full w-full object-cover object-center" />
+        <img src={images.headquartersTeam} alt="AIIF security team ready for deployment" width="1599" height="1066" fetchPriority="high" className="absolute inset-0 h-full w-full object-cover object-center" />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(4,24,38,.94)_0%,rgba(4,24,38,.76)_40%,rgba(4,24,38,.08)_78%)]" />
         <div className="relative mx-auto flex min-h-[620px] max-w-[1530px] items-end px-5 pb-16 sm:px-8 md:min-h-[720px] md:pb-20 lg:px-12">
           <div className="max-w-[660px]">
@@ -58,7 +58,7 @@ export default function Home() {
             <div>
               <Reveal><h2 className="text-4xl font-normal leading-tight text-navy-deep md:text-5xl">A disciplined partner for people, premises and operations.</h2></Reveal>
               <Reveal delay={0.05}>
-                <img src={images.aiifHousekeeping} alt="Housekeeping and facility staff coordinating daily operations" width="1536" height="1024" loading="lazy" className="mt-8 aspect-[4/3] w-full object-cover" />
+                <img src={images.facilityTeamBlack} alt="AIIF facility support personnel in uniform" width="1280" height="1920" loading="lazy" className="mt-8 aspect-[4/3] w-full object-cover object-top" />
               </Reveal>
             </div>
             <Reveal delay={0.08} className="flex flex-col justify-end">
@@ -84,7 +84,7 @@ export default function Home() {
           <Reveal><p className="section-label">How We Get It Done</p></Reveal>
           <div className="mt-10 grid overflow-hidden lg:grid-cols-2">
             <Reveal>
-              <img src={images.aiifFieldTeam} alt="Integrated force team receiving an operational briefing" width="1752" height="897" loading="lazy" className="h-full min-h-[420px] w-full object-cover" />
+              <img src={images.trainingTeam} alt="AIIF security personnel assembled for training" width="1599" height="1066" loading="lazy" className="h-full min-h-[420px] w-full object-cover" />
             </Reveal>
             <Reveal delay={0.06} className="bg-signal p-7 text-white sm:p-10 lg:p-14">
               <h2 className="text-3xl font-semibold">Our Methodology</h2>

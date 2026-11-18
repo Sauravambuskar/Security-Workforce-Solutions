@@ -47,7 +47,7 @@ export default function Contact() {
 
   return (
     <>
-      <PageHero eyebrow="Contact" title={<>Tell us about <span className="text-signal">your site</span></>} intro="Share your premises, requirement and timings, or connect through AIIF's verified public profile." image={images.aiifTeamHero} />
+      <PageHero eyebrow="Contact" title={<>Tell us about <span className="text-signal">your site</span></>} intro="Share your premises, requirement and timings, or connect through AIIF's verified public profile." image={images.corporateOfficers} />
 
       <section id="page-content" className="mx-auto grid max-w-[1530px] gap-12 px-5 py-16 sm:px-8 md:py-24 lg:grid-cols-12 lg:px-12">
         <div className="lg:col-span-4 space-y-6">
@@ -66,7 +66,7 @@ export default function Contact() {
               <p className="mt-3 flex items-center gap-3"><Clock aria-hidden="true" className="h-5 w-5" /> 24/7 Support</p>
             </div>
           </Reveal>
-          <Reveal delay={0.1}><img src={images.aiifHousekeeping} alt="Housekeeping and facility staff coordinating a site assignment" width="1536" height="1024" loading="lazy" className="hidden aspect-[4/3] w-full object-cover lg:block" /></Reveal>
+          <Reveal delay={0.1}><img src={images.facilityTeamGrey} alt="AIIF facility support personnel ready for an assignment" width="1280" height="1920" loading="lazy" className="hidden aspect-[4/3] w-full object-cover object-top lg:block" /></Reveal>
         </div>
 
         <div className="lg:col-span-8">
