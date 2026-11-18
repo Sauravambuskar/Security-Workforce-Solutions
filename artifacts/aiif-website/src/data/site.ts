@@ -1,6 +1,5 @@
 import surveillance from "@/assets/surveillance.jpg";
 import investigation from "@/assets/investigation.jpg";
-import recruitmentPoster from "@/assets/client-originals/aiif-recruitment-poster.jpeg";
 import indianSecurityTeam from "@/assets/client-originals/aiif-indian-security-team.jpeg";
 import facilityTeamGrey from "@/assets/client-originals/aiif-facility-team-grey.jpeg";
 import tacticalGuards from "@/assets/client-originals/aiif-tactical-guards.jpg";
@@ -63,7 +62,6 @@ export const org = {
 export const images = {
   surveillance,
   investigation,
-  recruitmentPoster,
   indianSecurityTeam,
   facilityTeamGrey,
   tacticalGuards,

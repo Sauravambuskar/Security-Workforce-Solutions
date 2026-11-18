@@ -86,12 +86,12 @@ export default function About() {
         <div className="mx-auto grid max-w-[1530px] items-center gap-10 px-5 sm:px-8 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-16 lg:px-12">
           <Reveal>
             <img
-              src={images.recruitmentPoster}
-              alt="AIIF security team recruitment announcement"
-              width="965"
-              height="1280"
+              src={images.corporateOfficers}
+              alt="AIIF officers representing professional career opportunities"
+              width="1344"
+              height="1808"
               loading="lazy"
-              className="mx-auto max-h-[720px] w-full max-w-[540px] object-contain"
+              className="mx-auto aspect-[4/5] max-h-[720px] w-full max-w-[540px] object-cover object-top"
             />
           </Reveal>
           <Reveal delay={0.05}>

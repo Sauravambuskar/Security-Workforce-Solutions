@@ -9,6 +9,6 @@ Original downloads and their website roles:
 - `aiif-facility-team-black.jpeg` — facility support and residential/industrial sections
 - `aiif-corporate-officers.jpg` — payroll management and contact
 - `aiif-training-team.jpg` — education, training and healthcare
-- `aiif-recruitment-poster.jpeg` — careers section
+- `aiif-recruitment-poster.jpeg` — archived client artwork; not displayed on the current website
 
 The previous active media is retained in `../backup/pre-client-originals/` for rollback.
