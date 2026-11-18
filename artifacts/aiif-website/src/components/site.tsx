@@ -3,6 +3,7 @@ import { Link, useLocation } from "wouter";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowDown, ArrowRight, Clock3, Instagram, Menu, X } from "lucide-react";
 import { org, services, type PageMeta } from "@/data/site";
+import aiifLogo from "@/assets/aiif-logo.png";
 
 const NAV = [
   { href: "/", label: "Home" },
@@ -48,8 +49,8 @@ export function Reveal({ children, delay = 0, className }: { children: ReactNode
 
 export function Logo({ compact = false, light = false }: { compact?: boolean; light?: boolean; size?: number }) {
   return (
-    <span className="flex min-w-0 items-center gap-3" translate="no">
-      <span aria-hidden="true" className={`grid h-12 w-14 shrink-0 place-items-center border-2 font-display text-lg font-semibold tracking-[0.08em] sm:h-[58px] sm:w-[66px] ${light ? "border-white text-white" : "border-navy-deep text-navy-deep"}`}>AIIF</span>
+    <span className="flex min-w-0 items-center gap-3.5" translate="no">
+      <img src={aiifLogo} alt="" width="166" height="166" fetchPriority="high" decoding="sync" className="h-14 w-14 shrink-0 object-contain sm:h-16 sm:w-16" />
       <span className={compact ? "hidden sm:block" : "block"}>
         <span className={`block text-[1.18rem] font-semibold leading-none tracking-[0.06em] ${light ? "text-white" : "text-navy-deep"}`}>Alliance International</span>
         <span className={`mt-1 block max-w-[210px] text-[0.58rem] font-semibold uppercase leading-tight tracking-[0.16em] ${light ? "text-white/70" : "text-slate-500"}`}>Integrated Force</span>
