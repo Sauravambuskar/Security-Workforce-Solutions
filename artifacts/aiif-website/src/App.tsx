@@ -6,6 +6,7 @@ import { TooltipProvider } from '@/components/ui/tooltip';
 import NotFound from '@/pages/not-found';
 import { Route, Switch, useLocation, Router as WouterRouter } from 'wouter';
 import { Shell } from '@/components/site';
+import { SiteIntro } from '@/components/site-intro';
 import Home from '@/pages/home';
 import About from '@/pages/about';
 import Services from '@/pages/services';
@@ -39,6 +40,7 @@ function RoutedErrorBoundary({ children }: { children: ReactNode }) {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
+      <SiteIntro />
       <TooltipProvider>
         <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, '')}>
           <Router />

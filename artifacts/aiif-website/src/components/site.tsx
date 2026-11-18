@@ -78,8 +78,10 @@ function Header() {
 
   useEffect(() => setOpen(false), [location]);
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    if (!open) return undefined;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = previousOverflow; };
   }, [open]);
   useEffect(() => {
     if (!open) return;
