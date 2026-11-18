@@ -121,11 +121,11 @@
   * { @apply border-border; }
   html { scroll-behavior: smooth; }
   @media (pointer: fine) { html { overscroll-behavior: none; } }
-  body { @apply bg-background font-sans text-foreground antialiased; font-size: 16px; }
+  body { @apply bg-background font-sans text-foreground antialiased; overflow-x: clip; font-size: 16px; }
   h1, h2, h3, h4 { font-family: var(--app-font-sans); letter-spacing: -0.025em; text-wrap: balance; }
   p { text-wrap: pretty; }
   img { display: block; }
-  a, button, input, select, textarea { touch-action: manipulation; }
+  a, button, input, select, textarea { touch-action: manipulation; -webkit-tap-highlight-color: rgb(37 99 235 / 0.16); }
   [id] { scroll-margin-top: 170px; }
   ::selection { background: hsl(var(--signal)); color: white; }
   :focus-visible { outline: 2px solid hsl(var(--signal)); outline-offset: 3px; }

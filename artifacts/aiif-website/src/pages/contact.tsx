@@ -43,11 +43,15 @@ export default function Contact() {
     form.reset();
   };
 
-  const clear = () => { localStorage.removeItem(STORE); setSaved(null); };
+  const clear = () => {
+    if (!window.confirm("Clear the demo enquiry saved on this device?")) return;
+    localStorage.removeItem(STORE);
+    setSaved(null);
+  };
 
   return (
     <>
-      <PageHero eyebrow="Contact" title={<>Tell us about <span className="text-signal">your site</span></>} intro="Share your premises, requirement and timings, or connect through AIIF's verified public profile." image={images.corporateOfficers} imageFocus="top" />
+      <PageHero eyebrow="Contact" title="Tell us about your site." intro="Share your premises, requirement and timings, or connect through AIIF's verified public profile." image={images.corporateOfficers} imageFocus="top" />
 
       <section id="page-content" className="mx-auto grid max-w-[1530px] gap-12 px-5 py-16 sm:px-8 md:py-24 lg:grid-cols-12 lg:px-12">
         <div className="lg:col-span-4 space-y-6">
@@ -71,7 +75,7 @@ export default function Contact() {
 
         <div className="lg:col-span-8">
           {saved ? (
-              <div className="bg-card border border-card-border rounded-sm p-8 md:p-12" data-testid="status-saved-locally">
+              <div className="bg-card border border-card-border rounded-sm p-8 md:p-12" role="status" aria-live="polite" data-testid="status-saved-locally">
                 <span className="grid h-14 w-14 place-items-center rounded-full bg-navy text-paper"><HardDrive aria-hidden="true" className="h-6 w-6" /></span>
                 <h2 className="mt-6 text-4xl font-semibold text-navy">Saved on This Device Only</h2>
                 <p className="mt-4 text-lg text-muted-foreground">Reference <strong className="text-navy font-mono">{saved.ref}</strong>. This enquiry was <strong className="text-signal">not delivered</strong> to AIIF. It is stored in your browser's local storage ({saved.count} demo {saved.count === 1 ? "entry" : "entries"} in total). No email or message has been sent.</p>

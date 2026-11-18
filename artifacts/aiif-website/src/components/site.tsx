@@ -1,4 +1,4 @@
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Link, useLocation } from "wouter";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowDown, ArrowRight, Clock3, Instagram, Menu, X } from "lucide-react";
@@ -73,17 +73,46 @@ export function CTA({ href, children, variant = "primary", testId }: { href: str
 function Header() {
   const [location] = useLocation();
   const [open, setOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const drawerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => setOpen(false), [location]);
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
   }, [open]);
+  useEffect(() => {
+    if (!open) return;
+    const focusable = () => Array.from(drawerRef.current?.querySelectorAll<HTMLElement>('a[href], button:not([disabled])') ?? []);
+    const first = focusable()[0];
+    first?.focus();
+    const handleDrawerKeys = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+        requestAnimationFrame(() => menuButtonRef.current?.focus());
+        return;
+      }
+      if (event.key !== "Tab") return;
+      const items = focusable();
+      if (!items.length) return;
+      const firstItem = items[0];
+      const lastItem = items[items.length - 1];
+      if (event.shiftKey && document.activeElement === firstItem) {
+        event.preventDefault();
+        lastItem.focus();
+      } else if (!event.shiftKey && document.activeElement === lastItem) {
+        event.preventDefault();
+        firstItem.focus();
+      }
+    };
+    window.addEventListener("keydown", handleDrawerKeys);
+    return () => window.removeEventListener("keydown", handleDrawerKeys);
+  }, [open]);
 
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200 bg-white text-slate-700 shadow-[0_1px_0_rgba(15,23,42,.04)]">
-      <div className="mx-auto flex h-[88px] max-w-[1530px] items-center justify-between gap-8 px-5 sm:px-8 lg:px-12">
-        <Link href="/" data-testid="link-logo" aria-label="AIIF home" className="shrink-0"><Logo compact /></Link>
+      <div className="mx-auto flex h-[76px] min-w-0 max-w-[1530px] items-center justify-between gap-6 px-5 sm:h-[88px] sm:px-8 lg:gap-8 lg:px-12">
+        <Link href="/" data-testid="link-logo" aria-label="AIIF home" className="min-w-0 shrink-0"><Logo compact /></Link>
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary navigation">
           {NAV.map((item) => {
             const active = location === item.href;
@@ -98,7 +127,7 @@ function Header() {
         <a href={org.instagram} target="_blank" rel="noreferrer" aria-label="AIIF on Instagram" className="hidden h-11 w-11 place-items-center border border-slate-200 text-slate-500 transition-colors hover:border-navy hover:text-navy lg:grid">
           <Instagram aria-hidden="true" className="h-4 w-4" />
         </a>
-        <button type="button" onClick={() => setOpen((value) => !value)} className="grid h-12 w-12 shrink-0 place-items-center border border-slate-300 text-navy lg:hidden" aria-label={open ? "Close navigation" : "Open navigation"} aria-expanded={open} aria-controls="mobile-navigation">
+        <button ref={menuButtonRef} type="button" onClick={() => setOpen((value) => !value)} className="grid h-12 w-12 shrink-0 place-items-center border border-slate-300 text-navy lg:hidden" aria-label={open ? "Close navigation" : "Open navigation"} aria-expanded={open} aria-controls="mobile-navigation">
           {open ? <X aria-hidden="true" className="h-5 w-5" /> : <Menu aria-hidden="true" className="h-5 w-5" />}
         </button>
       </div>
@@ -115,8 +144,8 @@ function Header() {
 
       <AnimatePresence>
         {open && (
-          <motion.div id="mobile-navigation" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="mobile-drawer fixed inset-x-0 bottom-0 top-[89px] overflow-y-auto bg-white lg:hidden">
-            <nav className="px-5 py-5" aria-label="Mobile navigation">
+          <motion.div ref={drawerRef} id="mobile-navigation" role="dialog" aria-modal="true" aria-label="Navigation menu" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="mobile-drawer fixed inset-x-0 bottom-0 top-[77px] overflow-y-auto bg-white sm:top-[89px] lg:hidden">
+            <nav className="px-5 pb-[max(1.25rem,env(safe-area-inset-bottom))] pt-5" aria-label="Mobile navigation">
               {NAV.map((item) => (
                 <Link key={item.href} href={item.href} className={`flex min-h-14 items-center justify-between border-b border-slate-200 text-xl font-medium ${location === item.href ? "text-signal" : "text-navy-deep"}`}>
                   {item.label}<ArrowRight aria-hidden="true" className="h-4 w-4" />
@@ -179,7 +208,7 @@ export function Shell({ children }: { children: ReactNode }) {
     <div className="min-h-[100dvh] overflow-x-hidden bg-white">
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-3 focus:top-3 focus:z-[80] focus:bg-navy focus:px-4 focus:py-3 focus:text-white">Skip to content</a>
       <Header />
-      <main id="main">{children}</main>
+      <main id="main" tabIndex={-1}>{children}</main>
       <Footer />
     </div>
   );
