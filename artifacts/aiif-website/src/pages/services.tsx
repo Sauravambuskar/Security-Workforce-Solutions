@@ -4,6 +4,26 @@ import { Building2, Check, Plus } from "lucide-react";
 import { CTA, CtaBand, PageHero, Reveal, useSeo } from "@/components/site";
 import { images, organizationSchema, pages, services, servicesSchema, type ServiceId } from "@/data/site";
 import { serviceIcons } from "@/pages/home";
+import aiifMark from "@/assets/aiif-mark.svg";
+
+function SurveillanceArtwork() {
+  return (
+    <figure className="relative mx-auto aspect-[4/5] max-h-[760px] overflow-hidden bg-navy-deep text-white">
+      <img src={images.surveillance} alt="AIIF surveillance control room monitoring" width="1024" height="1024" className="absolute inset-0 h-full w-full object-cover" />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(3,18,35,.15)_0%,rgba(3,18,35,.12)_38%,rgba(3,18,35,.92)_100%)]" />
+      <div className="absolute inset-x-4 top-4 flex flex-wrap items-center gap-x-3 gap-y-1 rounded-full border border-white/15 bg-navy-deep/75 px-4 py-3 text-[0.58rem] font-semibold uppercase tracking-[0.16em] backdrop-blur-sm sm:inset-x-6 sm:top-6 sm:text-xs">
+        <span className="h-2 w-2 rounded-full bg-signal" />
+        <span>24/7 Surveillance</span><span className="text-white/40">•</span><span>Control Room Monitoring</span><span className="hidden text-white/40 sm:inline">•</span><span className="hidden sm:inline">Professional Protection</span>
+      </div>
+      <img src={aiifMark} alt="" width="800" height="420" className="absolute right-[12%] top-[55%] w-14 rounded-sm bg-white/90 p-1 sm:w-20" />
+      <figcaption className="absolute inset-x-0 bottom-0 p-6 sm:p-9">
+        <p className="flex items-center gap-3 text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-white/80 sm:text-xs"><span className="h-px w-12 bg-signal" /> AIIF Security Solutions</p>
+        <h3 className="mt-5 max-w-sm text-[2.4rem] font-semibold uppercase leading-[0.88] sm:text-6xl"><span className="block">Trusted</span><span className="block font-light">Protection</span><span className="block">Every Day</span></h3>
+        <p className="mt-6 max-w-md text-sm leading-6 text-white/75 sm:text-base">Licensed security personnel, advanced surveillance systems and round-the-clock monitoring for corporate and residential safety.</p>
+      </figcaption>
+    </figure>
+  );
+}
 
 export default function Services() {
   useSeo(pages.services, [organizationSchema, ...servicesSchema]);
@@ -58,7 +78,7 @@ export default function Services() {
           <p className="section-label">Selected Service</p>
           <div className="mt-10 grid gap-10 lg:grid-cols-2 lg:gap-16">
             <div>
-              <img src={active.image} alt={active.name} width="1024" height="1024" className={`aspect-[4/3] w-full object-cover ${active.imageFocus === "top" ? "object-top" : "object-center"}`} />
+              {active.id === "surveillance" ? <SurveillanceArtwork /> : <img src={active.image} alt={active.name} width="1024" height="1024" className={`aspect-[4/3] w-full object-cover ${active.imageFocus === "top" ? "object-top" : "object-center"}`} />}
             </div>
             <article>
               <p className="text-sm font-semibold text-signal">Service {active.code}</p>
