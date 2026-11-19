@@ -3,7 +3,7 @@ import { Link, useLocation } from "wouter";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowDown, ArrowRight, Clock3, Instagram, Menu, X } from "lucide-react";
 import { org, services, type PageMeta } from "@/data/site";
-import aiifLogo from "@/assets/aiif-logo-clean.png";
+import aiifLogo from "@/assets/aiif-logo-hq.png";
 
 const NAV = [
   { href: "/", label: "Home" },
@@ -53,11 +53,11 @@ export function Logo({ compact = false, light = false }: { compact?: boolean; li
       <img
         src={aiifLogo}
         alt="AIIF"
-        width="608"
-        height="392"
+        width="1598"
+        height="788"
         fetchPriority="high"
         decoding="sync"
-        className={`w-auto shrink-0 object-contain ${compact ? "h-10 sm:h-11 lg:h-12" : "h-12 sm:h-14 lg:h-16"}`}
+        className={`w-auto shrink-0 object-contain ${compact ? "h-11 sm:h-12 lg:h-14" : "h-14 sm:h-16 lg:h-[4.5rem]"}`}
       />
     </span>
   );

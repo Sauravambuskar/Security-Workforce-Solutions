@@ -4,7 +4,7 @@ import { Building2, Check, Plus } from "lucide-react";
 import { CTA, CtaBand, PageHero, Reveal, useSeo } from "@/components/site";
 import { images, organizationSchema, pages, services, servicesSchema, type ServiceId } from "@/data/site";
 import { serviceIcons } from "@/pages/home";
-import aiifLogo from "@/assets/aiif-logo-clean.png";
+import aiifLogo from "@/assets/aiif-logo-hq.png";
 
 function SurveillanceArtwork() {
   return (
@@ -15,7 +15,7 @@ function SurveillanceArtwork() {
         <span className="h-2 w-2 rounded-full bg-signal" />
         <span>24/7 Surveillance</span><span className="text-white/40">•</span><span>Control Room Monitoring</span><span className="hidden text-white/40 sm:inline">•</span><span className="hidden sm:inline">Professional Protection</span>
       </div>
-      <img src={aiifLogo} alt="" width="608" height="392" className="absolute right-[10%] top-[54%] w-20 rounded-sm bg-white/95 p-2 shadow-sm sm:w-28" />
+      <img src={aiifLogo} alt="" width="1598" height="788" className="absolute right-[10%] top-[54%] w-24 rounded-sm bg-white/95 p-2 shadow-sm sm:w-32" />
       <figcaption className="absolute inset-x-0 bottom-0 p-6 sm:p-9">
         <p className="flex items-center gap-3 text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-white/80 sm:text-xs"><span className="h-px w-12 bg-signal" /> AIIF Security Solutions</p>
         <h3 className="mt-5 max-w-sm text-[2.4rem] font-semibold uppercase leading-[0.88] sm:text-6xl"><span className="block">Trusted</span><span className="block font-light">Protection</span><span className="block">Every Day</span></h3>
