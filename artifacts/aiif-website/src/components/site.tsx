@@ -3,7 +3,7 @@ import { Link, useLocation } from "wouter";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowDown, ArrowRight, Clock3, Instagram, Menu, X } from "lucide-react";
 import { org, services, type PageMeta } from "@/data/site";
-import aiifMark from "@/assets/aiif-mark.svg";
+import aiifLogo from "@/assets/aiif-logo.png";
 
 const NAV = [
   { href: "/", label: "Home" },
@@ -50,7 +50,7 @@ export function Reveal({ children, delay = 0, className }: { children: ReactNode
 export function Logo({ light = false }: { compact?: boolean; light?: boolean; size?: number }) {
   return (
     <span className={`inline-flex items-center ${light ? "bg-white px-3 py-2" : ""}`} translate="no">
-      <img src={aiifMark} alt="AIIF" width="800" height="420" fetchPriority="high" decoding="sync" className="h-10 w-auto shrink-0 sm:h-12 lg:h-14" />
+      <img src={aiifLogo} alt="AIIF" width="166" height="166" fetchPriority="high" decoding="sync" className="h-12 w-12 shrink-0 object-contain sm:h-14 sm:w-14 lg:h-16 lg:w-16" />
     </span>
   );
 }
