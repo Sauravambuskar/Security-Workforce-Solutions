@@ -56,7 +56,7 @@ export const org = {
   country: "India",
   cin: "U80100MR2026PTC476832",
   incorporatedOn: "20 May 2026",
-  registeredOffice: "H. No. 560, Flat 302, 3rd Floor, Mankoli Village, Bhiwandi, Thane, Maharashtra 421302, India",
+  registeredOffice: "11th Floor, Platina Tower, Plot C 59, Bandra Kurla Complex Rd, G Block, Bandra Kurla Complex, Bandra East, Mumbai, Maharashtra 400098, India",
 } as const;
 
 export const images = {
@@ -240,10 +240,10 @@ export const organizationSchema = {
   identifier: org.cin,
   address: {
     "@type": "PostalAddress",
-    streetAddress: "H. No. 560, Flat 302, 3rd Floor, Mankoli Village",
-    addressLocality: "Bhiwandi",
+    streetAddress: "11th Floor, Platina Tower, Plot C 59, Bandra Kurla Complex Rd, G Block, Bandra Kurla Complex, Bandra East",
+    addressLocality: "Mumbai",
     addressRegion: "Maharashtra",
-    postalCode: "421302",
+    postalCode: "400098",
     addressCountry: "IN",
   },
   sameAs: [org.instagram],
