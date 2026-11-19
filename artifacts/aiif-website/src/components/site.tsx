@@ -183,7 +183,6 @@ function Footer() {
             <Logo light />
             <p className="mt-6 max-w-sm text-sm leading-6">Integrated security, investigation, workforce, payroll and training support for organisations across India.</p>
             <p className="mt-5 max-w-sm text-xs leading-5 text-white/55">Registered office: {org.registeredOffice}</p>
-            <p className="mt-2 text-xs text-white/55">CIN: {org.cin}</p>
             <p className="mt-6 flex items-center gap-2 text-sm text-white"><Clock3 aria-hidden="true" className="h-4 w-4 text-signal" /> 24/7 operational support</p>
           </div>
           <div className="lg:col-span-2">

@@ -58,7 +58,7 @@ export default function Contact() {
           <Reveal>
             <div className="border border-slate-200 bg-[#f3f4f5] p-5">
               <p className="flex items-center gap-2 text-lg font-semibold text-navy-deep"><Building2 aria-hidden="true" className="h-5 w-5 text-signal" /> Registered Company</p>
-              <p className="mt-3 text-sm leading-6 text-slate-600"><strong>CIN:</strong> {org.cin}<br /><strong>Incorporated:</strong> {org.incorporatedOn}</p>
+              <p className="mt-3 text-sm leading-6 text-slate-600"><strong>Incorporated:</strong> {org.incorporatedOn}</p>
             </div>
           </Reveal>
           <Reveal delay={0.06}>

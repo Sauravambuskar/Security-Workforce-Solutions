@@ -41,7 +41,6 @@ export default function About() {
               <p>Every assignment begins with the site: its people, movement, risks, hours and expectations. We turn that understanding into post orders, staffing plans, monitoring routines and escalation paths.</p>
               <p>Our objective is straightforward—place the right people in the right roles, support them with clear systems and remain accountable throughout the engagement.</p>
               <div className="border-l-2 border-signal pl-5 text-sm leading-6 text-slate-500">
-                <p><strong className="text-navy-deep">CIN:</strong> {org.cin}</p>
                 <p><strong className="text-navy-deep">Incorporated:</strong> {org.incorporatedOn}</p>
                 <p><strong className="text-navy-deep">Registered office:</strong> {org.registeredOffice}</p>
               </div>

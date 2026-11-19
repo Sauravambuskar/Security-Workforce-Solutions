@@ -68,10 +68,9 @@ export default function Home() {
                 <p>We assess each site, select and brief personnel for the assignment, define responsibilities and maintain a clear escalation structure. This creates a service that is visible at the gate and accountable behind the scenes.</p>
                 <p>Our security, investigation and education capabilities work together so clients receive a solution shaped around their real operating environment.</p>
               </div>
-              <dl className="mt-8 grid gap-px bg-slate-300 sm:grid-cols-3">
+              <dl className="mt-8 grid gap-px bg-slate-300 sm:grid-cols-2">
                 <div className="bg-white p-4"><dt className="text-xs font-semibold uppercase tracking-wider text-slate-500">Incorporated</dt><dd className="mt-2 font-semibold text-navy-deep">{org.incorporatedOn}</dd></div>
                 <div className="bg-white p-4"><dt className="text-xs font-semibold uppercase tracking-wider text-slate-500">Registered</dt><dd className="mt-2 font-semibold text-navy-deep">Maharashtra</dd></div>
-                <div className="bg-white p-4"><dt className="text-xs font-semibold uppercase tracking-wider text-slate-500">CIN</dt><dd className="mt-2 break-all text-sm font-semibold text-navy-deep">{org.cin}</dd></div>
               </dl>
               <div className="mt-8"><CTA href="/about" variant="ghost" testId="button-home-about">About the Company</CTA></div>
             </Reveal>

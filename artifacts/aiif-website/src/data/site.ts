@@ -54,7 +54,6 @@ export const org = {
   pillars: ["Security", "Investigation", "Education"],
   lines: ["Security", "Staffing", "Payroll"],
   country: "India",
-  cin: "U80100MR2026PTC476832",
   incorporatedOn: "20 May 2026",
   registeredOffice: "11th Floor, Platina Tower, Plot C 59, Bandra Kurla Complex Rd, G Block, Bandra Kurla Complex, Bandra East, Mumbai, Maharashtra 400098, India",
 } as const;
@@ -237,7 +236,6 @@ export const organizationSchema = {
   alternateName: org.shortName,
   slogan: org.tagline,
   foundingDate: "2026-05-20",
-  identifier: org.cin,
   address: {
     "@type": "PostalAddress",
     streetAddress: "11th Floor, Platina Tower, Plot C 59, Bandra Kurla Complex Rd, G Block, Bandra Kurla Complex, Bandra East",
