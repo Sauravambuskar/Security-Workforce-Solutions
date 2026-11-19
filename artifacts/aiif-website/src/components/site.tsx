@@ -3,7 +3,7 @@ import { Link, useLocation } from "wouter";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowDown, ArrowRight, Clock3, Instagram, Menu, X } from "lucide-react";
 import { org, services, type PageMeta } from "@/data/site";
-import aiifLogo from "@/assets/aiif-logo.png";
+import aiifLogo from "@/assets/aiif-logo-clean.png";
 
 const NAV = [
   { href: "/", label: "Home" },
@@ -47,10 +47,18 @@ export function Reveal({ children, delay = 0, className }: { children: ReactNode
   return <div className={className}>{children}</div>;
 }
 
-export function Logo({ light = false }: { compact?: boolean; light?: boolean; size?: number }) {
+export function Logo({ compact = false, light = false }: { compact?: boolean; light?: boolean; size?: number }) {
   return (
-    <span className={`inline-flex items-center ${light ? "bg-white px-3 py-2" : ""}`} translate="no">
-      <img src={aiifLogo} alt="AIIF" width="166" height="166" fetchPriority="high" decoding="sync" className="h-12 w-12 shrink-0 object-contain sm:h-14 sm:w-14 lg:h-16 lg:w-16" />
+    <span className={`inline-flex items-center ${light ? "bg-white px-4 py-2.5" : ""}`} translate="no">
+      <img
+        src={aiifLogo}
+        alt="AIIF"
+        width="608"
+        height="392"
+        fetchPriority="high"
+        decoding="sync"
+        className={`w-auto shrink-0 object-contain ${compact ? "h-10 sm:h-11 lg:h-12" : "h-12 sm:h-14 lg:h-16"}`}
+      />
     </span>
   );
 }
