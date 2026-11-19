@@ -1,4 +1,4 @@
-import surveillance from "@/assets/surveillance.jpg";
+import surveillance from "@/assets/surveillance-aiif.jpg";
 import investigation from "@/assets/investigation.jpg";
 import indianSecurityTeam from "@/assets/client-originals/aiif-indian-security-team.jpeg";
 import facilityTeamGrey from "@/assets/client-originals/aiif-facility-team-grey.jpeg";

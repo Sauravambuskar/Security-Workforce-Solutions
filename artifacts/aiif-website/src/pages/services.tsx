@@ -78,7 +78,7 @@ export default function Services() {
           <p className="section-label">Selected Service</p>
           <div className="mt-10 grid gap-10 lg:grid-cols-2 lg:gap-16">
             <div>
-              {active.id === "surveillance" ? <SurveillanceArtwork /> : <img src={active.image} alt={active.name} width="1024" height="1024" className={`aspect-[4/3] w-full object-cover ${active.imageFocus === "top" ? "object-top" : "object-center"}`} />}
+              <img src={active.image} alt={active.name} width="1254" height="1254" className={`aspect-[4/3] w-full object-cover ${active.imageFocus === "top" ? "object-top" : "object-center"}`} />
             </div>
             <article>
               <p className="text-sm font-semibold text-signal">Service {active.code}</p>
